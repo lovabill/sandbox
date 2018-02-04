@@ -1,5 +1,8 @@
 package com.lovatsis.sandbox.examples.annotations;
 
+/**
+ * A Data Transfer Object for a Person model.
+ */
 public class PersonDTO {
 
     @SortClause("person.name")
@@ -7,6 +10,9 @@ public class PersonDTO {
 
     @SortClause("spouse.name")
     private String spouseName;
+
+    public PersonDTO() {
+    }
 
     public String getPersonName() {
         return personName;
