@@ -19,19 +19,19 @@ public class StreamsPerformanceTest {
         }
         System.out.println("ForLoop: " + (new Date().getTime() - start.getTime()) / 1000D);
         // Stream
-         start = new Date();
+        start = new Date();
         list.stream().forEach(StreamsPerformanceTest::myFunction);
         System.out.println("Stream: " + (new Date().getTime() - start.getTime()) / 1000D);
         // Stream
-         start = new Date();
+        start = new Date();
         list.stream().forEach(listEntry -> myFunction(listEntry));
         System.out.println("streamWithLambda: " + (new Date().getTime() - start.getTime()) / 1000D);
         // Parallel stream
-         start = new Date();
+        start = new Date();
         list.stream().parallel().forEach(StreamsPerformanceTest::myFunction);
         System.out.println("Stream.parallel: " + (new Date().getTime() - start.getTime()) / 1000D);
         // Parallel stream (lambda expression showcase)
-         start = new Date();
+        start = new Date();
         list.stream().parallel().forEach(listEntry -> myFunction(listEntry));
         System.out.println("Stream.parallel with lambda: " + (new Date().getTime() - start.getTime()) / 1000D);
 

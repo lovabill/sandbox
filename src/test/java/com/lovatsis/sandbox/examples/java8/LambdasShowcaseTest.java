@@ -7,7 +7,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.function.Function;
 
 //A functional interface is an interface that has just one abstract method, and thus represents a single function contract.
 interface FunctionalInterface {
