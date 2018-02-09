@@ -18,6 +18,9 @@ public class StreamsOperationsTest {
         }).collect(Collectors.toList());
         System.out.println("Numbers+Incremenet: " + numbers);
 
+        List<String> wrappedNumbers = numbers.stream().map(n -> "!" + n + "!").collect(Collectors.toList());
+        System.out.println("wrappedNumbers: " + wrappedNumbers);
+
     }
 
     @Test
