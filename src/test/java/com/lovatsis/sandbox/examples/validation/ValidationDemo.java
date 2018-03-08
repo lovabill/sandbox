@@ -23,14 +23,14 @@ public class ValidationDemo {
 
     @Test
     public void validCase() {
-        Person person = new Person("John", 25, "http://www.google.com");
+        Person person = new Person("John", 25, null);
         Set<ConstraintViolation<Person>> constraintViolations = validator.validate(person);
         assertEquals(0, constraintViolations.size());
     }
 
     @Test
     public void invalidNameNullCase() {
-        Person person = new Person(null, 25, "http://www.google.com");
+        Person person = new Person(null, 25, null);
         Set<ConstraintViolation<Person>> constraintViolations = validator.validate(person);
 
         assertEquals(1, constraintViolations.size());
@@ -41,7 +41,7 @@ public class ValidationDemo {
 
     @Test
     public void invalidNameSizeCase() {
-        Person person = new Person("", 25, "http://www.google.com");
+        Person person = new Person("", 25, null);
         Set<ConstraintViolation<Person>> constraintViolations = validator.validate(person);
 
         assertEquals(1, constraintViolations.size());
@@ -52,7 +52,7 @@ public class ValidationDemo {
 
     @Test
     public void invalidAgeCase() {
-        Person person = new Person("John", 200, "http://www.google.com");
+        Person person = new Person("John", 200, null);
         Set<ConstraintViolation<Person>> constraintViolations = validator.validate(person);
 
         assertEquals(1, constraintViolations.size());
@@ -61,15 +61,18 @@ public class ValidationDemo {
         assertEquals("{javax.validation.constraints.Max.message}", constraintViolation.getMessageTemplate());
     }
 
-    //Showcase with custom constraint
+    //Showcase with custom constraint and extended validation enabling using groups.
     @Test
     public void invalidWebpageCase() {
         Person person = new Person("John", 25, "ftp://www.google.com");
-        Set<ConstraintViolation<Person>> constraintViolations = validator.validate(person);
+        Set<ConstraintViolation<Person>> constraintViolations = validator.validate(person, ExtendedValidationGroup.class);
 
         assertEquals(1, constraintViolations.size());
         ConstraintViolation<Person> constraintViolation = constraintViolations.iterator().next();
         assertEquals("webpage", constraintViolation.getPropertyPath().toString());
         assertEquals("{com.lovatsis.constraints.URL.message}", constraintViolation.getMessageTemplate());
+
+        //Interpolated message using resource bundle (located in ValidationMessage.properties file in test resources folder)
+        System.out.println(constraintViolation.getMessage());
     }
 }

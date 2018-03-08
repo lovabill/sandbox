@@ -15,7 +15,7 @@ public class Person {
     @Max(150)
     private Integer age;
 
-    @URL(protocol = "http")
+    @URL(protocol = "http", groups = {ExtendedValidationGroup.class})
     private String webpage;
 
     public Person(String name, Integer age, String webpage) {
