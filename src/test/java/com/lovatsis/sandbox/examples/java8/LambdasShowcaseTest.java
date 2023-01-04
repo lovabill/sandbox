@@ -1,12 +1,13 @@
 package com.lovatsis.sandbox.examples.java8;
 
-import org.junit.Assert;
-import org.junit.Test;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+import org.junit.Assert;
+import org.junit.Test;
 
 //A functional interface is an interface that has just one abstract method, and thus represents a single function contract.
 interface FunctionalInterface {
@@ -55,4 +56,14 @@ public class LambdasShowcaseTest {
         Assert.assertTrue(collection.get(0).getValue().equals(1));
     }
 
+    @Test
+    public void functional_interfaces() {
+        magicBox("Hello there!", s -> s.length() > 5, s -> System.out.println(s.toUpperCase()));
+        magicBox("Hello there!", s -> s.startsWith("H"), s -> System.out.println(s.toLowerCase()));
+    }
+
+    public void magicBox(String input, Predicate<String> condition, Consumer<String> function) {
+        if (condition.test(input))
+            function.accept(input);
+    }
 }
