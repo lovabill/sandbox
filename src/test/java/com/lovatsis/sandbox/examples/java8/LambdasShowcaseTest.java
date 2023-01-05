@@ -66,4 +66,24 @@ public class LambdasShowcaseTest {
         if (condition.test(input))
             function.accept(input);
     }
+
+
+    @Test
+    public void method_reference() {
+        LambdasShowcaseTest lambdasShowcaseTest = new LambdasShowcaseTest(); //To omit this line, write myFunction as static.
+
+        MyJob myJob = () -> myFunction();
+        MyJob sameJob = lambdasShowcaseTest::myFunction; //method reference
+
+        myJob.run();
+        sameJob.run();
+    }
+
+    public void myFunction() {
+        System.out.println("Greetings!");
+    }
+
+    public interface MyJob {
+        void run();
+    }
 }
